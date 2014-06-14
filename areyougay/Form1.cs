@@ -20,61 +20,147 @@ namespace areyougay
             this.ClientSize = new System.Drawing.Size(291, 80);
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void lnkHome_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("http://ansidev.uni.me");
         }
 
-        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void lnkAbout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             if (isDisplayAbout == false)
             {
-                int _height = this.ClientSize.Height;
-                int j = 5000;
-                int k = 45 * j;
-                for (int i = 0; i < k; i++)
-                {
-                    if (i % j == 0)
-                    {
-                        _height += 1;
-                        this.ClientSize = new Size(this.ClientSize.Width, _height);
-                    }
-                    else
-                        continue;
-                }
+                this.ClientSize = new Size(this.ClientSize.Width, 125);
                 isDisplayAbout = true;
+
+                this.lblAbout = new System.Windows.Forms.Label();
+                this.lblAuthor = new System.Windows.Forms.Label();
+                this.lnkHome = new System.Windows.Forms.LinkLabel();
+                this.lnkHide = new System.Windows.Forms.LinkLabel();
+                this.SuspendLayout();
+                // 
+                // lblAbout
+                // 
+                this.lblAbout.AutoSize = true;
+                this.lblAbout.Location = new System.Drawing.Point(12, 85);
+                this.lblAbout.Name = "lblAbout";
+                this.lblAbout.Size = new System.Drawing.Size(144, 13);
+                this.lblAbout.TabIndex = 5;
+                this.lblAbout.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                this.lblAbout.ForeColor = Color.White;
+                this.lblAbout.Text = "Đây chỉ là một ứng dụng troll.";
+                // 
+                // lblAuthor
+                // 
+                this.lblAuthor.AutoSize = true;
+                this.lblAuthor.Location = new System.Drawing.Point(199, 85);
+                this.lblAuthor.Name = "lblAuthor";
+                this.lblAuthor.Size = new System.Drawing.Size(78, 13);
+                this.lblAuthor.TabIndex = 6;
+                this.lblAuthor.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                this.lblAuthor.ForeColor = Color.White;
+                this.lblAuthor.Text = "Coder: ansidev";
+                // 
+                // lnkHome
+                // 
+                this.lnkHome.AutoSize = true;
+                this.lnkHome.Location = new System.Drawing.Point(218, 103);
+                this.lnkHome.Name = "lnkHome";
+                this.lnkHome.Size = new System.Drawing.Size(59, 13);
+                this.lnkHome.TabIndex = 3;
+                this.lnkHome.TabStop = true;
+                this.lnkHome.Text = "Homepage";
+                this.lnkHome.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                this.lnkHome.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkHome_LinkClicked);
+                // 
+                // lnkHide
+                // 
+                this.lnkHide.AutoSize = true;
+                this.lnkHide.Location = new System.Drawing.Point(12, 103);
+                this.lnkHide.Name = "lnkHide";
+                this.lnkHide.Size = new System.Drawing.Size(29, 13);
+                this.lnkHide.TabIndex = 7;
+                this.lnkHide.TabStop = true;
+                this.lnkHide.Text = "Hide";
+                this.lnkHide.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                this.lnkHide.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkHide_LinkClicked);
+
+                this.Controls.Add(this.lblAbout);
+                this.Controls.Add(this.lblAuthor);
+                this.Controls.Add(this.lnkHome);
+                this.Controls.Add(this.lnkHide);
             }
             else
                 return;
         }
 
-        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void lnkHide_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            int _height = this.ClientSize.Height - 45;
-            this.ClientSize = new Size(this.ClientSize.Width, _height);
-            isDisplayAbout = false;
+            if (isDisplayAbout == true)
+            {
+                if (this.Controls.Contains(lblAbout))
+                {
+                    this.Controls.Remove(lblAbout);
+                }
+
+                if (this.Controls.Contains(lblAuthor))
+                {
+                    this.Controls.Remove(lblAuthor);
+                }
+
+                if (this.Controls.Contains(lnkHome))
+                {
+                    this.Controls.Remove(lnkHome);
+                }
+
+                if (this.Controls.Contains(lnkHide))
+                {
+                    this.Controls.Remove(lnkHide);
+                }
+                this.ClientSize = new Size(this.ClientSize.Width, 80);
+                isDisplayAbout = false;
+            }
+            else
+                return;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnYes_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Đây chỉ là một ứng dụng troll!");
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnNo_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Đây chỉ là một ứng dụng troll!");
         }
 
-        private void button2_MouseHover(object sender, EventArgs e)
+        private void btnYes_MouseHover(object sender, EventArgs e)
         {
-            this.button2.Text = "Vâng, tôi bị gay";
-            this.button1.Text = "Không, tôi không bị gay!";
+            this.btnYes.Text = "Có!";
+            this.btnNo.Text = "Không!";
         }
 
-        private void button1_MouseHover(object sender, EventArgs e)
+        private void btnNo_MouseHover(object sender, EventArgs e)
         {
-            this.button1.Text = "Vâng, tôi bị gay";
-            this.button2.Text = "Không, tôi không bị gay!";
+            this.btnNo.Text = "Có!";
+            this.btnYes.Text = "Không!";
         }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnExit_MouseHover(object sender, EventArgs e)
+        {
+            this.btnExit.FlatAppearance.BorderSize = 1;
+            this.btnExit.ForeColor = System.Drawing.Color.Azure;
+        }
+
+        private void btnExit_MouseLeave(object sender, EventArgs e)
+        {
+            this.btnExit.FlatAppearance.BorderSize = 0;
+            this.btnExit.ForeColor = System.Drawing.Color.White;
+        }
+
     }
 }
